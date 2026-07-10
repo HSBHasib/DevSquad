@@ -6,6 +6,7 @@ import Link from "next/link";
 import { NavLink, NavLinkProps } from "./NavLinks";
 import { motion, AnimatePresence } from "framer-motion";
 import { RxCross2 } from "react-icons/rx";
+import { TbMenu2Filled } from "react-icons/tb";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +18,7 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-gray-800 bg-[#0B0F19]/80 backdrop-blur-md px-6 py-4">
+    <nav className="sticky top-0 z-50 w-full border-b border-gray-800 backdrop-blur-md px-6 py-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Left Side Logo & Website Name */}
         <div className="flex items-center">
@@ -27,8 +28,6 @@ const Navbar: React.FC = () => {
               alt="DevSquad Logo"
               width={35}
               height={35}
-              priority 
-              quality={100} 
               className="object-contain"
             />
 
@@ -68,19 +67,7 @@ const Navbar: React.FC = () => {
             className="text-gray-400 hover:text-white focus:outline-none p-2"
             aria-label="Open Menu"
           >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
+            <TbMenu2Filled size={24} />
           </button>
         </div>
       </div>
@@ -158,4 +145,3 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
-
