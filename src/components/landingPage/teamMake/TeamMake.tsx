@@ -152,7 +152,7 @@ const TeamMake = () => {
                 <span className="h-3 w-3 rounded-full bg-yellow-500/60" />
                 <span className="h-3 w-3 rounded-full bg-green-500/60" />
               </div>
-              <span className="font-mono text-xs text-gray-500 tracking-wider">
+              <span className="text-xs text-gray-500 tracking-wider">
                 squad-pipeline.sh
               </span>
               <div className="w-10" />
@@ -161,7 +161,7 @@ const TeamMake = () => {
             {/* Simulated Console Output Lines (with Motion Trigger) */}
             <motion.div
               variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
-              className="font-mono text-xs text-gray-400 space-y-3.5 pl-2"
+              className="text-xs text-gray-400 space-y-3.5 pl-2"
             >
               <motion.p variants={codeLineVariants} className="text-indigo-400">
                 $ devsquad core-pipeline --init --project="PixGen-Engine"
@@ -199,19 +199,19 @@ const TeamMake = () => {
             className="mt-8 border border-gray-800 bg-[#090D16]/60 rounded-xl p-4 flex items-center justify-between"
           >
             <div className="flex items-center gap-3">
-              <div className="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-mono font-bold text-xs">
+              <div className="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-xs">
                 4/4
               </div>
               <div className="flex flex-col">
                 <span className="text-xs font-semibold text-white">
                   Squad Allocation Criteria
                 </span>
-                <span className="text-[11px] text-gray-500 font-mono">
+                <span className="text-[11px] text-gray-500">
                   Target: Tiles Gallery Editorial Node
                 </span>
               </div>
             </div>
-            <span className="text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-md">
+            <span className="text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-md">
               READY TO OPERATE
             </span>
           </motion.div>

@@ -89,7 +89,7 @@ const ChooseUs = () => {
             <div>
               {/* Top Content - Serial Number and Custom Icon */}
               <div className="flex items-center justify-between mb-8">
-                <span className="font-mono text-xl font-bold text-gray-700 tracking-wider group-hover:text-indigo-500/40 transition-colors">
+                <span className="text-xl font-bold text-gray-700 tracking-wider group-hover:text-indigo-500/40 transition-colors">
                   {feature.id}
                 </span>
                 <span className="p-2 rounded-xl bg-gray-900/40 border border-gray-800 group-hover:border-indigo-500/20 group-hover:bg-indigo-600/5 transition-all duration-300">
@@ -110,7 +110,7 @@ const ChooseUs = () => {
 
             {/*  */}
             <div className="mt-8">
-              <span className="font-mono text-[11px] font-semibold text-gray-500 tracking-widest uppercase group-hover:text-gray-400 transition-colors">
+              <span className="text-[11px] font-semibold text-gray-500 tracking-widest uppercase group-hover:text-gray-400 transition-colors">
                 {feature.tag}
               </span>
             </div>
