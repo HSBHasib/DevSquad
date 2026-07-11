@@ -53,7 +53,6 @@ const LoginContent = () => {
 
   // Submit Handler
   const onSubmit = async (data: LoginFormInputs) => {
-    // BetterAuth-এর মেইন গেটওয়ে সেশন ডাটা কালেকশন হুক
     toast.loading("Authorizing sequence...", { id: "auth-status" });
 
     try {
