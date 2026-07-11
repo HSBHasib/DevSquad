@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from "react";
@@ -7,9 +8,30 @@ import { NavLink, NavLinkProps } from "./NavLinks";
 import { motion, AnimatePresence } from "framer-motion";
 import { RxCross2 } from "react-icons/rx";
 import { TbMenu2Filled } from "react-icons/tb";
+import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { userSessionInterface } from "@/utils/userSessionInterface";
 
-const Navbar: React.FC = () => {
+const NavbarContent = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
+  // User Session
+  const { data: session, isPending } = authClient.useSession();
+  const user = session?.user as userSessionInterface | undefined;
+  const role = user?.role || "user";
+
+  // SignOut Func
+  const handleSignOut = async () => {
+    try {
+      await authClient.signOut();
+      toast.success("Logged out successfully!", { duration: 1500 });
+      router.refresh();
+    } catch (err) {
+      toast.error("Logout runtime error.");
+    }
+  };
 
   const navLinks: NavLinkProps[] = [
     { href: "/", label: "Home" },
@@ -144,4 +166,5 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default NavbarContent;
+

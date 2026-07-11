@@ -19,7 +19,11 @@ export interface RegisterFormInputs {
   password: string;
 }
 
-const RegisterContent = () => {
+interface RegisterContentProps {
+  srcParams: { [key: string]: string | string[] | undefined };
+}
+
+const RegisterContent = ({ srcParams }: RegisterContentProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const router = useRouter();
