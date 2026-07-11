@@ -81,8 +81,8 @@ const Navbar: React.FC = () => {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 220 }}
-              className="fixed top-0 right-0 z-50 h-screen w-75 bg-[#0B0F19]/75 backdrop-blur-xl border-l border-gray-800 p-6 flex flex-col justify-between md:hidden shadow-2xl"
+              transition={{ type: "spring", damping: 25, stiffness: 260 }}
+              className="fixed top-0 right-0 z-50 h-screen w-75 bg-[#0B0F19] backdrop-blur-xl border-l border-gray-800 p-6 flex flex-col justify-between md:hidden shadow-2xl"
             >
               <div>
                 {/* Close Bar */}
