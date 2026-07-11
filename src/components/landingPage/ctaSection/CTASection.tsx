@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const CTASection = () => {
   return (
-    <div className="w-full max-w-6xl mx-auto px-6 py-16">
+    <div className="w-full max-w-6xl mx-auto px-6 py-18">
       {/* Main CTA Card */}
       <div className="relative overflow-hidden rounded-[32px] bg-linear-to-br from-[#5352ED]/80 via-[#4834DF]/90 to-[#30336B] px-8 py-18  text-center shadow-2xl">
         {/* 📝 Text container */}

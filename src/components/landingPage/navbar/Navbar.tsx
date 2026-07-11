@@ -47,13 +47,13 @@ const Navbar: React.FC = () => {
         {/* Right-side Desktop Buttons */}
         <div className="hidden md:flex items-center gap-3">
           <Link
-            href="/login"
+            href="/auth/login"
             className="text-gray-400 hover:text-white transition-colors text-sm font-medium px-5 py-2.5 hover:bg-gray-800/40 rounded-xl"
           >
             Login
           </Link>
           <Link
-            href="/register"
+            href="/auth/register"
             className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition-all shadow-md shadow-indigo-600/20"
           >
             Register
@@ -122,14 +122,14 @@ const Navbar: React.FC = () => {
               <div className="flex flex-col gap-3 mt-auto mb-4">
                 <div className="h-px bg-gray-800/80 w-full my-2" />
                 <Link
-                  href="/login"
+                  href="/auth/login"
                   onClick={() => setIsOpen(false)}
                   className="text-center text-gray-300 hover:text-white transition-colors text-base font-medium py-3 rounded-xl hover:bg-gray-800/40"
                 >
                   Login
                 </Link>
                 <Link
-                  href="/register"
+                  href="/auth/register"
                   onClick={() => setIsOpen(false)}
                   className="text-center bg-indigo-600 hover:bg-indigo-700 text-white text-base font-medium py-3.5 rounded-xl transition-all shadow-lg shadow-indigo-600/20 active:scale-98"
                 >
