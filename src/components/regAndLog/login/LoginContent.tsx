@@ -75,7 +75,7 @@ const LoginContent = () => {
   };
 
   return (
-    <div className="w-full min-h-screen py-5 bg-[#070A13] flex flex-col justify-center items-center px-4">
+    <div className="w-full min-h-screen py-5 flex flex-col justify-center items-center px-4">
       <motion.div
         initial="hidden"
         animate="visible"
