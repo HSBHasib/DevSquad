@@ -1,27 +1,54 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { motion, Variants } from "framer-motion";
 
 const CTASection = () => {
+  const containerVariants: Variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  };
+
   return (
-    <div className="w-full max-w-6xl mx-auto px-6 py-18">
+    <motion.div 
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={containerVariants}
+      className="w-full max-w-6xl mx-auto px-6 py-18"
+    >
       {/* Main CTA Card */}
-      <div className="relative overflow-hidden rounded-[32px] bg-linear-to-br from-[#5352ED]/80 via-[#4834DF]/90 to-[#30336B] px-8 py-18  text-center shadow-2xl">
+      <div className="relative overflow-hidden rounded-[32px] bg-linear-to-br from-[#5352ED]/80 via-[#4834DF]/90 to-[#30336B] px-8 py-18 text-center shadow-2xl">
         {/* 📝 Text container */}
         <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
           {/* Main Title */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
+          <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
             Ready to Build Something <br className="hidden sm:inline" />{" "}
             Awesome?
-          </h2>
+          </motion.h2>
 
           {/* Sub-title */}
-          <p className="text-white/80 text-sm sm:text-base font-normal max-w-xl leading-relaxed mb-8 md:mb-10">
+          <motion.p variants={itemVariants} className="text-white/80 text-sm sm:text-base font-normal max-w-xl leading-relaxed mb-8 md:mb-10">
             Join the thousands of developers already shipping successful
             projects through DevSquad. Your team is waiting.
-          </p>
+          </motion.p>
 
           {/* (CTA Buttons) */}
-          <div className="flex items-center justify-center gap-4 w-full sm:w-auto max-[400px]:flex-col">
+          <motion.div variants={itemVariants} className="flex items-center justify-center gap-4 w-full sm:w-auto max-[400px]:flex-col">
             {/* Get Started button */}
             <Link
               href="/auth/register"
@@ -37,11 +64,12 @@ const CTASection = () => {
             >
               Learn More
             </Link>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 export default CTASection;
+
