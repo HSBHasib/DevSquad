@@ -89,7 +89,7 @@ const TeamMake = () => {
         {/* Main Title */}
         <motion.h2
           variants={itemVariants}
-          className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight mb-4"
+          className="text-3xl sm:text-4xl font-bold text-white tracking-tight text-center leading-tight mb-4"
         >
           Recruit Elite Builders & Ship Scalable Web MVPs.
         </motion.h2>
