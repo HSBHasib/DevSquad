@@ -6,10 +6,13 @@ import FeaturesSection from '@/components/landingPage/Features/FeaturesSection'
 import Review from '@/components/landingPage/review/Review'
 import TeamMake from '@/components/landingPage/teamMake/TeamMake'
 import ChooseUs from '@/components/landingPage/chooseUs/ChooseUs'
+import Navbar from '@/components/landingPage/navbar/Navbar'
+import Footer from '@/components/landingPage/footer/Footer'
 
 const RootPage = () => {
   return (
     <>
+      <Navbar />
       <Banner />
       <FeaturesSection />
       <TeamMake />
@@ -17,6 +20,7 @@ const RootPage = () => {
       <Review />
       <FAQSection />
       <CTASection />
+      <Footer />
     </>
   )
 }

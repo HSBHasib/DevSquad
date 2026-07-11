@@ -32,7 +32,7 @@ const CTASection = () => {
       className="w-full max-w-6xl mx-auto px-6 py-18"
     >
       {/* Main CTA Card */}
-      <div className="relative overflow-hidden rounded-[32px] bg-linear-to-br from-[#5352ED]/80 via-[#4834DF]/90 to-[#30336B] px-8 py-18 text-center shadow-2xl">
+      <div className="relative overflow-hidden rounded-[32px] bg-linear-to-br from-[#5352ED]/80 via-[#4834DF]/80 to-[#30336B] px-8 py-18 text-center shadow-2xl">
         {/* 📝 Text container */}
         <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
           {/* Main Title */}

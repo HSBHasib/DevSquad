@@ -2,7 +2,7 @@ import React from "react";
 import ArchitecturalPillars from "@/components/about/aboutArchitecturalPillars/ArchitecturalPillars";
 import AboutBanner from "@/components/about/aboutBanner/AboutBanner";
 import EcosystemMatrix from "@/components/about/aboutEcosystemMatrix/EcosystemMatrix";
-import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About - DevSquad",
