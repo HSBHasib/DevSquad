@@ -10,6 +10,8 @@ import GoogleSignIn from "../GoogleSignIn";
 import DemoCredentials from "../DemoCredentials";
 import toast from "react-hot-toast";
 import { Popover, PopoverContent, PopoverTrigger } from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 interface LoginFormInputs {
   email: string;
@@ -17,12 +19,14 @@ interface LoginFormInputs {
 }
 const LoginContent = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
 
   // React Hoot Form
   const {
     register,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormInputs>();
 
@@ -31,7 +35,7 @@ const LoginContent = () => {
     if (role === "user") {
       setValue("email", "userdevsquad@gmail.com");
       setValue("password", "UserDevSquad11@DS");
-      toast.success("User Session Token Injected!", {
+      toast.success("User Credential Injected!", {
         style: {
           background: "#111827",
           color: "#F3F4F6",
@@ -41,7 +45,7 @@ const LoginContent = () => {
     } else {
       setValue("email", "admindevsquad@gmail.com");
       setValue("password", "AdminDevSquad11@DS");
-      toast.success("Admin Credential Core Injected!", {
+      toast.success("Admin Credential Injected!", {
         style: {
           background: "#111827",
           color: "#F3F4F6",
@@ -52,14 +56,25 @@ const LoginContent = () => {
   };
 
   // Submit Handler
-  const onSubmit = async (data: LoginFormInputs) => {
-    toast.loading("Authorizing sequence...", { id: "auth-status" });
-
+  const onSubmit = async (formData: LoginFormInputs) => {
+    const { email, password } = formData;
     try {
-      // রিয়ালিস্টিক নেটওয়ার্ক সিঙ্ক ডিলে
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log("Collected Auth Payload ->", data);
-      toast.success("Session Validated Successfully!", { id: "auth-status" });
+      const { data, error } = await authClient.signIn.email({
+        email,
+        password,
+        rememberMe: true,
+      });
+
+      if (error) {
+        toast.error("Failed to login.");
+        return;
+      }
+
+      if (data) {
+        reset();
+        toast.success("Login successful!");
+        router.push("/");
+      }
     } catch (error) {
       toast.error("Authorization compilation failed.", { id: "auth-status" });
     }

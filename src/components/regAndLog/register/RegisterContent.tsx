@@ -314,3 +314,4 @@ const RegisterContent = () => {
 };
 
 export default RegisterContent;
+
