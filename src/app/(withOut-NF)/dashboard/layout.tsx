@@ -1,18 +1,22 @@
 import React from "react";
 import DashboardSideBar from "@/components/dashboard/dashboardSideBar/DashboardSideBar";
 
-interface DashbaordLayoutProps {
+interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
-const DashboardLayout = async ({ children }: DashbaordLayoutProps) => {
+const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
   return (
-    <div className="min-h-screen flex overflow-hidden">
+    <div className="min-h-screen flex bg-[#070A13] overflow-hidden text-slate-100 font-sans">
       
+      {/* Dashbaord SideBar */}
       <DashboardSideBar />
 
-      <main className="flex-1 min-w-0 max-w-full h-full p-6 pt-24 lg:pt-6 overflow-y-auto">
-        {children}
+      {/* Dashboard Main Content */}
+      <main className="flex-1 min-w-0 max-w-full h-screen p-6 pt-24 lg:pt-6 overflow-y-auto custom-scrollbar">
+        <div className="max-w-[1400px] mx-auto w-full h-full animate-fadeIn">
+          {children}
+        </div>
       </main>
 
     </div>

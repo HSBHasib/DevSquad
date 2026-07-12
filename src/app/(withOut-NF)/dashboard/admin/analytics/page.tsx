@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AllUserAnalytics = () => {
+const Analytics = () => {
   return (
     <div>
       This is the All User Analytics page
@@ -8,4 +8,4 @@ const AllUserAnalytics = () => {
   )
 }
 
-export default AllUserAnalytics
+export default Analytics

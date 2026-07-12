@@ -31,9 +31,12 @@ const Navbar = () => {
   const skeletonCount = isPending ? 5 : 3;
   const skeletons = Array.from({ length: skeletonCount });
 
+  // Role Path
+  const roleBasePath = role === "user" ? "/dashboard/user/profile" : "/dashboard/admin/analytics";
+
   const loginUserRoute = [
     { href: "/contact", label: "Contact" },
-    { href: `/dashboard/${role}`, label: "Dashboard" },
+    { href: roleBasePath, label: "Dashboard" },
   ];
 
   if (user) {

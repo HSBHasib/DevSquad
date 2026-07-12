@@ -13,9 +13,7 @@ const ContactInfo = () => {
           DevSquad <span className="text-indigo-500">Gateway</span>
         </h1>
         <p className="mt-4 text-gray-400 text-base md:text-lg leading-relaxed">
-          DevSquad ecosystem ba squads niye kono proshno, collaboration
-          proposal, ba technical support proyojon? Amader engineering team-er
-          saathe direct connect koro.
+          Have any questions about the DevSquad ecosystem or squads, a collaboration proposal, or need technical support? Connect directly with our engineering team.
         </p>
       </div>
 
