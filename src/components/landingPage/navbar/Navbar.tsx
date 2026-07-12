@@ -33,7 +33,7 @@ const Navbar = () => {
 
   const loginUserRoute = [
     { href: "/contact", label: "Contact" },
-    { href: "/dashboard", label: "Dashboard" },
+    { href: `/dashboard/${role}`, label: "Dashboard" },
   ];
 
   if (user) {
