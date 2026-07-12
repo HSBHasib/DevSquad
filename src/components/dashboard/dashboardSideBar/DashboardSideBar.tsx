@@ -49,7 +49,7 @@ const DashboardSideBar = () => {
     },
     {
       name: "Create Squad",
-      path: "/dashboard/user/add-squad",
+      path: "/dashboard/user/create-squad",
       icon: <RiFolderAddLine size={20} />,
     },
     {
@@ -142,7 +142,7 @@ const DashboardSideBar = () => {
           </div>
 
           {/* Navigation Links */}
-          <nav className="lg:mt-6 px-3 space-y-1">
+          <nav className="lg:mt-6 px-3 space-y-2">
             {menuItems.map((item) => {
               const isActive = pathname === item.path;
               return (
