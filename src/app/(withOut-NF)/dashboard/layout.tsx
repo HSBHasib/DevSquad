@@ -14,7 +14,7 @@ const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
 
       {/* Dashboard Main Content */}
       <main className="flex-1 min-w-0 max-w-full h-screen p-6 pt-24 lg:pt-6 overflow-y-auto custom-scrollbar">
-        <div className="max-w-[1400px] mx-auto w-full h-full animate-fadeIn">
+        <div className="max-w-350 mx-auto w-full h-full animate-fadeIn">
           {children}
         </div>
       </main>

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-// React Icons Imports Only
+// React Icons
 import {
   RxExit,
   RxQuestionMarkCircled,
