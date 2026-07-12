@@ -96,7 +96,7 @@ const Banner: React.FC = () => {
           {/* Call-to-Action Buttons */}
           <motion.div variants={fadeInUpVariants} className="flex items-center gap-4 w-full sm:w-auto max-[475px]:flex-col">
             <Link
-              href="/create-squad"
+              href="/dashboard/user/create-squad"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-1 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-7 py-3.5 rounded-xl transition-all shadow-lg shadow-indigo-500/25 active:scale-98 text-sm"
             >
               <GoPlus size={22} />

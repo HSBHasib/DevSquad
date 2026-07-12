@@ -1,11 +1,15 @@
+import AllSquadsTable from '@/components/dashboard/allSquadsTable/AllSquadsTable';
+import { getAllSquads } from '@/lib/api/squad';
 import React from 'react'
 
-const UserSquads = () => {
+const UserSquads = async () => {
+  const initialSquadsData = await getAllSquads();
   return (
-    <div>
-      this is user all squads
-    </div>
+    <div className="max-w-7xl mx-auto p-3">
+    <AllSquadsTable initialSquads={initialSquadsData} />
+  </div>
   )
 }
 
 export default UserSquads
+
