@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -13,14 +12,33 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { userSessionInterface } from "@/utils/userSessionInterface";
 
-const NavbarContent = () => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+
+  // Navigation Links in form of an array
+  const navLinks: NavLinkProps[] = [
+    { href: "/", label: "Home" },
+    { href: "/explore-squads", label: "Explore Squads" },
+    { href: "/about", label: "About" },
+  ];
 
   // User Session
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user as userSessionInterface | undefined;
   const role = user?.role || "user";
+
+  const skeletonCount = isPending ? 5 : 3;
+  const skeletons = Array.from({ length: skeletonCount });
+
+  const loginUserRoute = [
+    { href: "/contact", label: "Contact" },
+    { href: "/dashboard", label: "Dashboard" },
+  ];
+
+  if (user) {
+    navLinks.push(...loginUserRoute);
+  }
 
   // SignOut Func
   const handleSignOut = async () => {
@@ -32,12 +50,6 @@ const NavbarContent = () => {
       toast.error("Logout runtime error.");
     }
   };
-
-  const navLinks: NavLinkProps[] = [
-    { href: "/", label: "Home" },
-    { href: "/explore-squads", label: "Explore Squads" },
-    { href: "/about", label: "About" },
-  ];
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-gray-800 backdrop-blur-md px-6 py-4">
@@ -61,25 +73,65 @@ const NavbarContent = () => {
 
         {/* Navigation Links */}
         <div className="hidden md:flex items-center gap-1.5">
-          {navLinks.map((link) => (
-            <NavLink key={link.href} href={link.href} label={link.label} />
-          ))}
+          {isPending ? (
+            <div className="flex gap-4 px-2 animate-pulse">
+              {skeletons.map((_, idx) => (
+                <div
+                  key={idx}
+                  className={`h-8 rounded-lg bg-gray-800/80 ${
+                    idx === 1 || idx === 4 ? "w-26" : "w-14"
+                  }`}
+                />
+              ))}
+            </div>
+          ) : (
+            navLinks.map((link) => (
+              <NavLink key={link.href} href={link.href} label={link.label} />
+            ))
+          )}
         </div>
 
         {/* Right-side Desktop Buttons */}
         <div className="hidden md:flex items-center gap-3">
-          <Link
-            href="/auth/login"
-            className="text-gray-400 hover:text-white transition-colors text-sm font-medium px-5 py-2.5 hover:bg-gray-800/40 rounded-xl"
-          >
-            Login
-          </Link>
-          <Link
-            href="/auth/register"
-            className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition-all shadow-md shadow-indigo-600/20"
-          >
-            Register
-          </Link>
+          {isPending ? (
+            // 💀 Desktop right action skeleton placeholder blocks layout
+            <div className="flex items-center gap-3 animate-pulse">
+              <div className="bg-gray-800/80 h-8 w-20 rounded-md"></div>
+              <div className="bg-gray-800/80 h-8 w-24 rounded-md"></div>
+            </div>
+          ) : user ? (
+            // 🔥 Authenticated State UI view
+            <div className="flex items-center gap-4">
+              <span className="text-gray-300 text-sm font-medium">
+                Hello,{" "}
+                <strong className="text-white font-semibold">
+                  {user.name}
+                </strong>
+              </span>
+              <button
+                onClick={handleSignOut}
+                className="text-red-400 cursor-pointer hover:text-red-300 hover:bg-red-950/20 text-sm font-medium px-5 py-2.5 rounded-xl border border-red-500/30 transition-colors"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            // ❄️ Guest State UI View (Existing buttons perfectly preserved)
+            <>
+              <Link
+                href="/auth/login"
+                className="text-gray-400 hover:text-white transition-colors text-sm font-medium px-5 py-2.5 hover:bg-gray-800/40 rounded-xl"
+              >
+                Login
+              </Link>
+              <Link
+                href="/auth/register"
+                className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition-all shadow-md shadow-indigo-600/20"
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -123,40 +175,74 @@ const NavbarContent = () => {
 
                 {/* Mobile Navigation Links */}
                 <div className="flex flex-col gap-2">
-                  {navLinks.map((link) => (
-                    <div
-                      key={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className="w-full"
-                    >
-                      {/* Pass isMobile prop as true for mobile sidebar */}
-                      <NavLink
-                        href={link.href}
-                        label={link.label}
-                        isMobile={true}
-                      />
+                  {isPending ? (
+                    <div className="flex flex-col gap-3 py-2 animate-pulse">
+                      {skeletons.map((_, idx) => (
+                        <div
+                          key={idx}
+                          className={`h-10 w-full rounded-lg bg-gray-800/80`}
+                        />
+                      ))}
                     </div>
-                  ))}
+                  ) : (
+                    navLinks.map((link) => (
+                      <div
+                        key={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className="w-full"
+                      >
+                        <NavLink
+                          href={link.href}
+                          label={link.label}
+                          isMobile={true}
+                        />
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
 
-              {/* Bottom Login and Register Buttons */}
+              {/* Bottom Dynamic Authentication Panel (Login/Register or User/Logout) */}
               <div className="flex flex-col gap-3 mt-auto mb-4">
                 <div className="h-px bg-gray-800/80 w-full my-2" />
-                <Link
-                  href="/auth/login"
-                  onClick={() => setIsOpen(false)}
-                  className="text-center text-gray-300 hover:text-white transition-colors text-base font-medium py-3 rounded-xl hover:bg-gray-800/40"
-                >
-                  Login
-                </Link>
-                <Link
-                  href="/auth/register"
-                  onClick={() => setIsOpen(false)}
-                  className="text-center bg-indigo-600 hover:bg-indigo-700 text-white text-base font-medium py-3.5 rounded-xl transition-all shadow-lg shadow-indigo-600/20 active:scale-98"
-                >
-                  Register
-                </Link>
+
+                {isPending ? (
+                  <div className="flex flex-col gap-3 py-1 animate-pulse">
+                    <div className="bg-gray-800/80 h-12 w-full rounded-xl"></div>
+                  </div>
+                ) : user ? (
+                  <div className="flex flex-col gap-4 text-center">
+                    <span className="text-gray-300 text-base font-medium py-1">
+                      Hello,{" "}
+                      <strong className="text-white font-semibold">
+                        {user.name}
+                      </strong>
+                    </span>
+                    <button
+                      onClick={handleSignOut}
+                      className="w-full text-center cursor-pointer bg-red-600/10 border border-red-500/20 text-red-400 text-base font-medium py-3.5 rounded-xl transition-all active:scale-98"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <Link
+                      href="/auth/login"
+                      onClick={() => setIsOpen(false)}
+                      className="text-center text-gray-300 hover:text-white transition-colors text-base font-medium py-3 rounded-xl hover:bg-gray-800/40"
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      href="/auth/register"
+                      onClick={() => setIsOpen(false)}
+                      className="text-center bg-indigo-600 hover:bg-indigo-700 text-white text-base font-medium py-3.5 rounded-xl transition-all shadow-lg shadow-indigo-600/20 active:scale-98"
+                    >
+                      Register
+                    </Link>
+                  </>
+                )}
               </div>
             </motion.div>
           </>
@@ -166,5 +252,4 @@ const NavbarContent = () => {
   );
 };
 
-export default NavbarContent;
-
+export default Navbar;
