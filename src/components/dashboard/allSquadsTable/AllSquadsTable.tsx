@@ -7,6 +7,7 @@ import { GoEye, GoTrash } from "react-icons/go";
 import { SquadData } from "@/utils/squadInterface";
 import Image from "next/image";
 import toast from "react-hot-toast";
+import { deleteSquad } from "@/lib/action/squad";
 
 interface AllSquadsTableProps {
   initialSquads: SquadData[];
@@ -17,9 +18,32 @@ const AllSquadsTable = ({ initialSquads, isLoading = false }: AllSquadsTableProp
   const [page, setPage] = useState(1);
   const rowsPerPage = 5;
 
-  const handleDeleteToast = (projectName: string) => {
-    
-    toast.error(`Delete request triggered for "${projectName}"`);
+  console.log('initialSquads:', initialSquads);
+
+ const handleDelete = async (id: string, projectName: string) => {
+    if (!id) {
+      toast.error("Invalid Squad ID");
+      return;
+    }
+
+    const toastId = toast.loading(`Deleting "${projectName}"...`);
+
+    try {
+      // Call the deleteSquad function
+      const result = await deleteSquad(id);
+
+      // Check the result and update the UI accordingly
+      if (result) {
+        toast.success(`"${projectName}" deleted successfully!`, { id: toastId });
+        window.location.reload()
+      } else {
+        toast.error("Failed to delete squad.", { id: toastId });
+      }
+    } catch (error) {
+      console.error("Delete error:", error);      
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong. Please try again.";
+      toast.error(errorMessage, { id: toastId });
+    }
   };
 
   const totalPages = Math.ceil(initialSquads.length / rowsPerPage);
@@ -164,7 +188,7 @@ const AllSquadsTable = ({ initialSquads, isLoading = false }: AllSquadsTableProp
 
                           {/* Delete Button */}
                           <button
-                            onClick={() => handleDeleteToast(squad.projectName)}
+                            onClick={() => handleDelete(squad._id!, squad.projectName)}
                             className="h-8 w-8 inline-flex items-center justify-center rounded-lg border hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/10 transition duration-150 shadow"
                             title="Delete Squad"
                           >
@@ -180,7 +204,7 @@ const AllSquadsTable = ({ initialSquads, isLoading = false }: AllSquadsTableProp
             </Table.Content>
           </Table.ScrollContainer>
 
-          {/* Table Footer: Custom Dark Pagination Layout */}
+          {/* Pagination Layout */}
           {!isLoading && totalPages > 1 && (
             <Table.Footer className="border-t px-5 py-4 flex items-center justify-between">
               <Pagination size="sm">
@@ -234,3 +258,4 @@ const AllSquadsTable = ({ initialSquads, isLoading = false }: AllSquadsTableProp
 };
 
 export default AllSquadsTable;
+

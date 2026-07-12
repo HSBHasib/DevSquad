@@ -19,3 +19,7 @@ export interface DBInsertResponse {
   insertedId: string;
 }
 
+export interface DBDeleteResponse {
+  acknowledged: boolean;
+  deletedCount: number;
+}

@@ -1,6 +1,6 @@
+import React from 'react'
 import AllSquadsTable from '@/components/dashboard/allSquadsTable/AllSquadsTable';
 import { getAllSquads } from '@/lib/api/squad';
-import React from 'react'
 
 const UserSquads = async () => {
   const initialSquadsData = await getAllSquads();
