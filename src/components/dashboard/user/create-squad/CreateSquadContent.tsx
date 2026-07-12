@@ -8,6 +8,7 @@ import MediaUploader from "./MediaUploader";
 import TechAndComms from "./TechAndComms";
 import CreateSquadForm from "./createSquadForm/CreateSquadForm";
 import { useRouter } from "next/navigation";
+import { createSquad } from "@/lib/action/squad";
 
 const CreateSquadContent = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -35,7 +36,7 @@ const CreateSquadContent = () => {
         coverImage: coverImageUrl
       };
 
-      console.log("🚀 Final Unified Squad Structured Data Object Matrix:", squadData);
+      await createSquad(squadData);
       
       toast.success("Squad launched successfully!", { id: "squad-upload" });
       router.push('/dashboard/user/squads');
@@ -82,4 +83,3 @@ const CreateSquadContent = () => {
 };
 
 export default CreateSquadContent;
-
