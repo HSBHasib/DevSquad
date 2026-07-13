@@ -130,7 +130,7 @@ const AllSquadsTable = ({ initialSquads, isLoading = false }: AllSquadsTableProp
                       {/* Action Buttons */}
                       <Table.Cell className="py-4 px-5">
                         <div className="flex items-center gap-2">
-                          <Link href={`/squads/${squad._id}`} className="h-8 w-8 inline-flex items-center justify-center rounded-lg border hover:border-indigo-500 hover:bg-indigo-600/10 transition duration-150 hover:shadow-sm hover:shadow-indigo-950/50">
+                          <Link href={`/squad-detail/${squad._id}`} className="h-8 w-8 inline-flex items-center justify-center rounded-lg border hover:border-indigo-500 hover:bg-indigo-600/10 transition duration-150 hover:shadow-sm hover:shadow-indigo-950/50">
                             <GoEye size={15} />
                           </Link>
                           <button onClick={() => handleDelete(squad._id!, squad.projectName)} className="h-8 w-8 inline-flex cursor-pointer items-center justify-center rounded-lg border hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/10 transition duration-150 hover:shadow-sm hover:shadow-red-950/50">

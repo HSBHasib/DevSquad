@@ -43,3 +43,5 @@ export const getAllSquads = async (params?: SquadQueryParams): Promise<SquadsAPI
 export const getFourSquads = async (): Promise<SquadData[]> => {
   return serverFetch<SquadData[]>("/api/four-squads");
 };
+
+

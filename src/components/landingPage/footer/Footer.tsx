@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
       links: [
         { href: "/privacy", label: "Privacy Policy" },
         { href: "/terms", label: "Terms of Service" },
-        { href: "/support", label: "Support Hub" },
+        { href: "/contact", label: "Support Hub" },
       ],
     },
   ];

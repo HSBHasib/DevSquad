@@ -86,7 +86,7 @@ export default function SquadCard({ squad, itemVariants }: SquadCardProps) {
         {/* Action Button */}
         <div className="mt-6 pt-4 border-t border-gray-800/60">
           <Link
-            href={`/squads/${squad._id}`}
+            href={`/squad-detail/${squad._id}`}
             className="w-full inline-flex items-center justify-center bg-gray-800/40 hover:bg-indigo-600 text-gray-300 hover:text-white border border-gray-800 hover:border-indigo-600 text-xs font-semibold py-3 rounded-xl transition-all duration-200 active:scale-98 shadow-md"
           >
             <GoEye size={14} className="mr-1.5" />
