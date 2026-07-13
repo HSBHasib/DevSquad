@@ -40,3 +40,4 @@ const SquadDataLoader = async ({ params }: SquadDetailsProps) => {
 };
 
 export default SquadDetails;
+
