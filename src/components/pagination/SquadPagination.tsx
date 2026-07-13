@@ -61,7 +61,7 @@ const SquadPagination = ({
   // If there's only one page or no items, don't show pagination
   if (totalPages <= 1) return null;
   return (
-    <div className="mt-10 pt-6 border-t border-gray-800/40 w-full flex justify-center">
+    <div className="mt-1 border-t border-gray-800/40 w-full flex justify-center">
       <Pagination className="w-full flex flex-col md:flex-row justify-between items-center gap-4 bg-[#0B0F19] p-4 rounded-2xl border border-gray-800/60 shadow-xl shadow-indigo-950/5">
         {/* Summary Text */}
         <div className="text-xs text-gray-500 font-medium">

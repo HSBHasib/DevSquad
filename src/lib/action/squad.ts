@@ -1,5 +1,6 @@
-import { DBDeleteResponse, DBInsertResponse, SquadData } from "@/utils/squadInterface";
+import { SquadData } from "@/utils/squadInterface";
 import { serverMutation } from "../core/server";
+import { DBDeleteResponse, DBInsertResponse } from "@/utils/DBResponce";
 
 // Insert squad data on DB
 export const createSquad = async (data: SquadData): Promise<DBInsertResponse> => {
