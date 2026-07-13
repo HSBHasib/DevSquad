@@ -6,3 +6,4 @@ import { ApplicationData } from "@/utils/applicationInterface";
 export const createApplication = async (data: ApplicationData): Promise<DBInsertResponse> => {
   return serverMutation<DBInsertResponse, ApplicationData>("/api/applications", data);
 };
+

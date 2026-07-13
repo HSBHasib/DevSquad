@@ -151,7 +151,6 @@ const SquadDetailsContent = ({ squad }: SquadDetailsContentProps) => {
             <div className="space-y-3 pt-2">
               <Link
                 href={`/squad-detail/${squad._id}/apply`} 
-                target="_blank"  
                 className="w-full h-10 inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-500 shadow-lg shadow-indigo-600/20 active:scale-[0.98] transition duration-150"
               >
                 <GoLink size={14} />
@@ -171,3 +170,4 @@ const SquadDetailsContent = ({ squad }: SquadDetailsContentProps) => {
 };
 
 export default SquadDetailsContent;
+

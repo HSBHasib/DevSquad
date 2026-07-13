@@ -7,5 +7,7 @@ export interface ApplicationData {
   squadId: string;
   ownerId: string;
   applicantId: string;
+  status: string;
+  squadName?: string;
   createdAt?: Date;
 }

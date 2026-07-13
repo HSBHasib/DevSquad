@@ -3,15 +3,12 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import {
-  GoMail,
-  GoLink,
-  GoFile,
-  GoPaperAirplane,
-} from "react-icons/go";
+import { GoMail, GoLink, GoFile, GoPaperAirplane } from "react-icons/go";
 import toast from "react-hot-toast";
 import { MdOutlinePerson4 } from "react-icons/md";
 import { createApplication } from "@/lib/action/application";
+import { CloseButton } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 interface ApplySquadFormClientProps {
   squadId: string;
@@ -37,7 +34,8 @@ const ApplySquadForm = ({
 }: ApplySquadFormClientProps) => {
   const [loading, setLoading] = useState(false);
 
-  
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -45,6 +43,7 @@ const ApplySquadForm = ({
     formState: { errors },
   } = useForm<IFormInput>();
 
+  //   IS Squad Full
   if (isFull) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center p-4">
@@ -68,6 +67,7 @@ const ApplySquadForm = ({
     );
   }
 
+  //   Handle Form Submit
   const onSubmit = async (data: IFormInput) => {
     setLoading(true);
     const toastId = toast.loading("Submitting your application...");
@@ -77,7 +77,8 @@ const ApplySquadForm = ({
         ...data,
         squadId,
         ownerId,
-        applicantId
+        status: "pending",
+        applicantId,
       };
 
       console.log("Submitting Payload: ", finalPayload);
@@ -86,7 +87,7 @@ const ApplySquadForm = ({
       await createApplication(finalPayload);
 
       toast.success("Application submitted successfully!", { id: toastId });
-      reset(); 
+      reset();
     } catch (error) {
       console.error(error);
       toast.error("Failed to submit application.", { id: toastId });
@@ -94,6 +95,7 @@ const ApplySquadForm = ({
       setLoading(false);
     }
   };
+
   return (
     <div className="min-h-screen text-gray-100 py-8 px-4 flex items-center justify-center">
       <motion.div
@@ -114,6 +116,8 @@ const ApplySquadForm = ({
             Provide your correct details. The squad owner will review your
             profile.
           </p>
+
+          <CloseButton onClick={() => router.back()} className="absolute right-4 top-4 opacity-40 hover:opacity-70 transition-opacity" />
         </div>
 
         {/* Form Structure */}
