@@ -57,12 +57,13 @@ const ExploreSquadsContent = ({ squads }: ExploreSquadsContentProps) => {
       ) : (
         <>
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
             {squadList.map((squad: SquadData, idx: number) => (
               <SquadCard key={squad._id || idx} squad={squad} itemVariants={itemVariants} />
             ))}
           </div>
 
+          {/* Pagination */}
           <SquadPagination totalItems={totalFound} itemsPerPage={6} />
         </>
       )}

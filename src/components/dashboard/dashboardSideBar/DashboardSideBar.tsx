@@ -57,6 +57,11 @@ const DashboardSideBar = () => {
       path: "/dashboard/user/squads",
       icon: <HiOutlineUserGroup size={20} />,
     },
+    {
+      name: "Applications",
+      path: "/dashboard/user/applications",
+      icon: <HiOutlineUserGroup size={20} />,
+    },
   ];
 
   // Admin Menu

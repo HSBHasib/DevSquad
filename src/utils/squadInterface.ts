@@ -13,5 +13,3 @@ export interface SquadData {
   userId?: number;
   createdAt?: Date;   
 }
-
-

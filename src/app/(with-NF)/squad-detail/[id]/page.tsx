@@ -26,7 +26,6 @@ const SquadDataLoader = async ({ params }: SquadDetailsProps) => {
   const squads = response?.data || [];
   
   const squad = squads.find((s) => s._id === id);
-  console.log('squad ', squad);
 
   if (!squad) {
     return (

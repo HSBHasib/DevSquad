@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { GoArrowLeft, GoLink, GoPeople, GoDatabase, GoTerminal, GoVersions } from "react-icons/go";
 import { SquadData } from "@/utils/squadInterface"; 
+import Link from "next/link";
 
 interface SquadDetailsContentProps {
   squad: SquadData;
@@ -148,15 +149,14 @@ const SquadDetailsContent = ({ squad }: SquadDetailsContentProps) => {
             </div>
 
             <div className="space-y-3 pt-2">
-              <a 
-                href={squad.communicationLink} 
-                target="_blank" 
-                rel="noreferrer" 
+              <Link
+                href={`/squad-detail/${squad._id}/apply`} 
+                target="_blank"  
                 className="w-full h-10 inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-500 shadow-lg shadow-indigo-600/20 active:scale-[0.98] transition duration-150"
               >
                 <GoLink size={14} />
                 Apply to Join Squad
-              </a>
+              </Link>
             </div>
 
             <div className="text-[10px] text-gray-600 text-center flex items-center justify-center gap-1">
