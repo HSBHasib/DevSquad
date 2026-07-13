@@ -10,13 +10,18 @@ import CreateSquadForm from "./createSquadForm/CreateSquadForm";
 import { useRouter } from "next/navigation";
 import { createSquad } from "@/lib/action/squad";
 
-const CreateSquadContent = () => {
+interface CreateSquadContentProps {
+  userId: string | undefined;
+}
+
+const CreateSquadContent = ({ userId }: CreateSquadContentProps) => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [tags, setTags] = useState<string[]>([]);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter()
 
+  
   const onSubmit = async (data: any) => {
     if (!selectedFile) {
       toast.error("Please provide a cover image.");
@@ -32,6 +37,7 @@ const CreateSquadContent = () => {
       
       const squadData = {
         ...data,
+        userId,
         techStack: tags,
         coverImage: coverImageUrl
       };

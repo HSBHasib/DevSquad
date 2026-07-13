@@ -96,11 +96,14 @@ const CreateSquadForm = ({ register, errors }: FormInputsProps) => {
             })}
             className="w-full bg-[#070A13] border border-gray-800 rounded-lg px-4 py-3 text-sm text-gray-300 focus:outline-none focus:border-indigo-500 transition-all cursor-pointer"
           >
-            {[...Array(5)].map((_, i) => (
-              <option key={i + 1} value={i + 1}>
-                {i+1 + 1} Members
-              </option>
-            ))}
+            {[...Array(4)].map((_, i) => {
+              const memberCount = i + 2;
+              return (
+                <option key={memberCount} value={memberCount}>
+                  {memberCount} Members
+                </option>
+              );
+            })}
           </select>
         </div>
       </div>

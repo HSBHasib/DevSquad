@@ -1,10 +1,14 @@
 import React from 'react'
 import CreateSquadContent from '@/components/dashboard/user/create-squad/CreateSquadContent'
+import { getUserSession } from '@/lib/core/session'
 
-const CreateSquad = () => {
+const CreateSquad = async () => {
+  const user = await getUserSession();
+  const userId = user?.id;
+
   return (
     <div>
-      <CreateSquadContent />
+      <CreateSquadContent userId={userId} />
     </div>
   )
 }

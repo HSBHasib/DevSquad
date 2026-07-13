@@ -22,7 +22,9 @@ const handleStatusCode = async <T>(res: Response): Promise<T> => {
 
 // Server Fetch
 export const serverFetch = async <T>(path: string): Promise<T> => {
-  const res = await fetch(`${baseUrl}${path}`);
+  const res = await fetch(`${baseUrl}${path}`, {
+    cache: "no-store",
+  });
   return handleStatusCode<T>(res);
 };
 

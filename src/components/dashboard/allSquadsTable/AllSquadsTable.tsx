@@ -1,13 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { Pagination, Table, Skeleton } from "@heroui/react";
+import { Table, Skeleton } from "@heroui/react";
 import { GoEye, GoTrash } from "react-icons/go";
 import { SquadData } from "@/utils/squadInterface";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { deleteSquad } from "@/lib/action/squad";
+import { useSearchParams } from "next/navigation";
+import SquadPagination from "@/components/pagination/SquadPagination";
 
 interface AllSquadsTableProps {
   initialSquads: SquadData[];
@@ -15,47 +17,41 @@ interface AllSquadsTableProps {
 }
 
 const AllSquadsTable = ({ initialSquads, isLoading = false }: AllSquadsTableProps) => {
-  const [page, setPage] = useState(1);
-  const rowsPerPage = 5;
+  const searchParams = useSearchParams();
+  const rowsPerPage = 10;
 
-  console.log('initialSquads:', initialSquads);
+  // Calculate the current page from the URL parameters
+  const currentPage = Number(searchParams.get("page")) || 1;
 
- const handleDelete = async (id: string, projectName: string) => {
+  // Handle Delete
+  const handleDelete = async (id: string, projectName: string) => {
     if (!id) {
       toast.error("Invalid Squad ID");
       return;
     }
-
     const toastId = toast.loading(`Deleting "${projectName}"...`);
-
     try {
-      // Call the deleteSquad function
       const result = await deleteSquad(id);
-
-      // Check the result and update the UI accordingly
       if (result) {
         toast.success(`"${projectName}" deleted successfully!`, { id: toastId });
-        window.location.reload()
+        window.location.reload();
       } else {
         toast.error("Failed to delete squad.", { id: toastId });
       }
     } catch (error) {
-      console.error("Delete error:", error);      
-      const errorMessage = error instanceof Error ? error.message : "Something went wrong. Please try again.";
-      toast.error(errorMessage, { id: toastId });
+      console.error("Delete error:", error);
+      toast.error("Something went wrong.", { id: toastId });
     }
   };
 
-  const totalPages = Math.ceil(initialSquads.length / rowsPerPage);
-  const start = (page - 1) * rowsPerPage;
-  const currentSquads = initialSquads.slice(start, start + rowsPerPage);
+  const squadsArray = Array.isArray(initialSquads) ? initialSquads : [];
 
-  const startRecord = initialSquads.length === 0 ? 0 : start + 1;
-  const endRecord = Math.min(page * rowsPerPage, initialSquads.length);
+  // Calculate the start and end indices for the current page
+  const start = (currentPage - 1) * rowsPerPage;
+  const currentSquads = squadsArray.slice(start, start + rowsPerPage);
 
   return (
     <div className="w-full shadow-xl text-left">
-
       {/* Title Section */}
       <div className="flex flex-col gap-1 mb-6">
         <h2 className="text-xl font-bold tracking-wide">All Active Squads</h2>
@@ -64,16 +60,10 @@ const AllSquadsTable = ({ initialSquads, isLoading = false }: AllSquadsTableProp
 
       {/* Main Table Structure */}
       <div className="overflow-hidden border rounded-3xl">
-        <Table 
-          aria-label="Squads management table"
-          className="w-full"
-        >
+        <Table aria-label="Squads management table" className="w-full">
           <Table.ScrollContainer>
             <Table.Content className="min-w-200">
-              
-              {/* Table Header */}
               <Table.Header>
-                {/* Table Column Headers */}
                 <Table.Column isRowHeader className="font-semibold text-xs py-4 px-5 text-left border-b ">Project Info</Table.Column>
                 <Table.Column className="font-semibold text-xs py-4 px-5 text-left border-b ">Category</Table.Column>
                 <Table.Column className="font-semibold text-xs py-4 px-5 text-left border-b ">Capacity & Slots</Table.Column>
@@ -81,35 +71,15 @@ const AllSquadsTable = ({ initialSquads, isLoading = false }: AllSquadsTableProp
                 <Table.Column className="font-semibold text-xs py-4 px-5 text-left border-b ">Actions</Table.Column>
               </Table.Header>
 
-              {/* Table Body */}
               <Table.Body>
                 {isLoading ? (
                   Array.from({ length: rowsPerPage }).map((_, index) => (
                     <Table.Row key={`skeleton-${index}`} className="border-b">
-                      <Table.Cell className="py-4 px-5">
-                        <div className="flex items-center gap-3.5">
-                          <Skeleton className="h-10 w-16 rounded-lg" />
-                          <Skeleton className="h-4 w-32 rounded-md" />
-                        </div>
-                      </Table.Cell>
-                      <Table.Cell className="py-4 px-5">
-                        <Skeleton className="h-5 w-20 rounded" />
-                      </Table.Cell>
-                      <Table.Cell className="py-4 px-5">
-                        <div className="flex flex-col gap-1.5">
-                          <Skeleton className="h-3.5 w-24 rounded" />
-                          <Skeleton className="h-3 w-16 rounded" />
-                        </div>
-                      </Table.Cell>
-                      <Table.Cell className="py-4 px-5">
-                        <Skeleton className="h-3.5 w-20 rounded" />
-                      </Table.Cell>
-                      <Table.Cell className="py-4 px-5">
-                        <div className="flex items-center gap-2">
-                          <Skeleton className="h-8 w-8 rounded-lg" />
-                          <Skeleton className="h-8 w-8 rounded-lg" />
-                        </div>
-                      </Table.Cell>
+                      <Table.Cell className="py-4 px-5"><Skeleton className="h-10 w-32 rounded-lg" /></Table.Cell>
+                      <Table.Cell className="py-4 px-5"><Skeleton className="h-5 w-20 rounded" /></Table.Cell>
+                      <Table.Cell className="py-4 px-5"><Skeleton className="h-5 w-24 rounded" /></Table.Cell>
+                      <Table.Cell className="py-4 px-5"><Skeleton className="h-5 w-20 rounded" /></Table.Cell>
+                      <Table.Cell className="py-4 px-5"><Skeleton className="h-8 w-16 rounded-lg" /></Table.Cell>
                     </Table.Row>
                   ))
                 ) : currentSquads.length === 0 ? (
@@ -124,25 +94,14 @@ const AllSquadsTable = ({ initialSquads, isLoading = false }: AllSquadsTableProp
                   </Table.Row>
                 ) : (
                   currentSquads.map((squad) => (
-                    <Table.Row 
-                      key={squad._id || Math.random().toString()} 
-                      className="border-b transition-colors duration-150"
-                    >
+                    <Table.Row key={squad._id || Math.random().toString()} className="border-b">
                       {/* Project Info */}
                       <Table.Cell className="py-4 px-5">
                         <div className="flex items-center gap-3.5">
                           <div className="h-10 w-16 rounded-lg overflow-hidden border">
-                            <Image 
-                              src={squad.coverImage || "/"} 
-                              alt={squad.projectName}
-                              width={200}
-                              height={200} 
-                              className="h-full w-full object-cover opacity-80"
-                            />
+                            <Image src={squad.coverImage || "/"} alt={squad.projectName} width={200} height={200} className="h-full w-full object-cover opacity-80" />
                           </div>
-                          <span className="font-bold text-sm tracking-wide">
-                            {squad.projectName}
-                          </span>
+                          <span className="font-bold text-sm tracking-wide">{squad.projectName}</span>
                         </div>
                       </Table.Cell>
 
@@ -156,43 +115,26 @@ const AllSquadsTable = ({ initialSquads, isLoading = false }: AllSquadsTableProp
                       {/* Capacity & Slots */}
                       <Table.Cell className="py-4 px-5">
                         <div className="flex flex-col gap-0.5">
-                          <span className="font-medium text-xs">
-                            {squad.joinedCount ?? 1} / {squad.totalSlots ?? 4} Members
-                          </span>
-                          <span className="text-[10px] text-gray-500">
-                            Capacity: {squad.capacity}
-                          </span>
+                          <span className="font-medium text-xs">{squad.joinedCount ?? 1} / {squad.totalSlots ?? 4} Members</span>
+                          <span className="text-[10px] text-gray-500">Capacity: {squad.capacity}</span>
                         </div>
                       </Table.Cell>
 
                       {/* Created Date */}
                       <Table.Cell className="py-4 px-5">
                         <span className="text-xs font-normal">
-                          {squad.createdAt ? new Date(squad.createdAt).toLocaleDateString("en-US", {
-                            year: "numeric", month: "short", day: "numeric"
-                          }) : "Jul 13, 2026"}
+                          {squad.createdAt ? new Date(squad.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : "Jul 13, 2026"}
                         </span>
                       </Table.Cell>
 
                       {/* Action Buttons */}
                       <Table.Cell className="py-4 px-5">
                         <div className="flex items-center gap-2">
-                          {/* View Details Button */}
-                          <Link
-                            href={`/squads/${squad._id}`}
-                            className="h-8 w-8 inline-flex items-center justify-center rounded-lg border hover:border-indigo-500 hover:bg-indigo-600/10 transition duration-150 shadow"
-                            title="View Details"
-                          >
+                          <Link href={`/squads/${squad._id}`} className="h-8 w-8 inline-flex items-center justify-center rounded-lg border hover:border-indigo-500 hover:bg-indigo-600/10 transition duration-150 hover:shadow-sm hover:shadow-indigo-950/50">
                             <GoEye size={15} />
                           </Link>
-
-                          {/* Delete Button */}
-                          <button
-                            onClick={() => handleDelete(squad._id!, squad.projectName)}
-                            className="h-8 w-8 inline-flex items-center justify-center rounded-lg border hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/10 transition duration-150 shadow"
-                            title="Delete Squad"
-                          >
-                            <GoTrash size={14} /> 
+                          <button onClick={() => handleDelete(squad._id!, squad.projectName)} className="h-8 w-8 inline-flex cursor-pointer items-center justify-center rounded-lg border hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/10 transition duration-150 hover:shadow-sm hover:shadow-red-950/50">
+                            <GoTrash size={14} />
                           </button>
                         </div>
                       </Table.Cell>
@@ -200,55 +142,16 @@ const AllSquadsTable = ({ initialSquads, isLoading = false }: AllSquadsTableProp
                   ))
                 )}
               </Table.Body>
-
             </Table.Content>
           </Table.ScrollContainer>
 
-          {/* Pagination Layout */}
-          {!isLoading && totalPages > 1 && (
-            <Table.Footer className="border-t px-5 py-4 flex items-center justify-between">
-              <Pagination size="sm">
-                <Pagination.Summary className="text-xs font-medium">
-                  Showing <span className="font-bold">{startRecord}</span> to <span className="font-bold">{endRecord}</span> of <span className="text-indigo-400 font-bold">{initialSquads.length}</span> results
-                </Pagination.Summary>
-
-                <Pagination.Content className="flex items-center gap-1.5">
-                  <Pagination.Item>
-                    <button
-                      disabled={page === 1}
-                      onClick={() => setPage((p) => Math.max(1, p - 1))}
-                      className="px-3 py-1.5 rounded-lg text-black border text-xs disabled:opacity-30 disabled:cursor-not-allowed transition"
-                    >
-                      Prev
-                    </button>
-                  </Pagination.Item>
-
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                    <Pagination.Item key={p}>
-                      <button
-                        onClick={() => setPage(p)}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                          p === page
-                            ? "bg-indigo-600 border border-indigo-600 shadow text-white"
-                            : "border"
-                        }`}
-                      >
-                        {p}
-                      </button>
-                    </Pagination.Item>
-                  ))}
-
-                  <Pagination.Item>
-                    <button
-                      disabled={page === totalPages}
-                      onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                      className="px-3 py-1.5 text-black rounded-lg border text-xs disabled:opacity-30 disabled:cursor-not-allowed transition"
-                    >
-                      Next
-                    </button>
-                  </Pagination.Item>
-                </Pagination.Content>
-              </Pagination>
+          {/* Pagination */}
+          {!isLoading && squadsArray.length > rowsPerPage && (
+            <Table.Footer className="p-0">
+              <SquadPagination
+                totalItems={squadsArray.length} 
+                itemsPerPage={rowsPerPage} 
+              />
             </Table.Footer>
           )}
         </Table>
@@ -258,4 +161,3 @@ const AllSquadsTable = ({ initialSquads, isLoading = false }: AllSquadsTableProp
 };
 
 export default AllSquadsTable;
-

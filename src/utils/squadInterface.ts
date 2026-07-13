@@ -10,6 +10,7 @@ export interface SquadData {
   techStack: string[];
   totalSlots: number;
   joinedCount: number;
+  userId?: number;
   createdAt?: Date;   
 }
 
@@ -23,3 +24,4 @@ export interface DBDeleteResponse {
   acknowledged: boolean;
   deletedCount: number;
 }
+

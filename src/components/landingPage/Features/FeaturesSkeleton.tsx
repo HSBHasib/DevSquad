@@ -2,10 +2,11 @@ import React from "react";
 
 interface FeaturesSkeletonProps {
   count?: number; 
+  gridCount?: number;
 }
-const FeaturesSkeleton = ({ count = 4 }: FeaturesSkeletonProps) => {
+const FeaturesSkeleton = ({ gridCount = 4 , count = 4 }: FeaturesSkeletonProps) => {
     return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full animate-pulse">
+    <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-${gridCount} gap-3 w-full animate-pulse`}>
       {Array.from({ length: count }).map((_, index) => (
         <div 
           key={index} 
