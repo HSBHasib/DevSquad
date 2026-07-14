@@ -3,6 +3,13 @@ import { DistributionChart } from "@/components/dashboard/admin/analyticsContent
 import { GrowthChart } from "@/components/dashboard/admin/analyticsContent/GrowthChart";
 import { getAllUsers } from "@/lib/api/users";
 import { getAllSquads } from "@/lib/api/squad";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Analytics - DevSquad",
+  description:
+    "Real-time data visualization of the DevSquad pipeline ecosystem.",
+};
 
 const Analytics = async () => {
   const usersData = await getAllUsers();

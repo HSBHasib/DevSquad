@@ -2,6 +2,13 @@ import React from 'react';
 import AllSquadsTable from '@/components/dashboard/allSquadsTable/AllSquadsTable';
 import { getAllSquads } from '@/lib/api/squad';
 import { getUserSession } from '@/lib/core/session';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "My Squads - DevSquad",
+  description:
+    "View and manage the development squads you are a part of.",
+};
 
 const UserSquads = async () => {
   const user = await getUserSession();

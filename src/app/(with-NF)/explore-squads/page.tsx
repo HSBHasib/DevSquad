@@ -4,11 +4,18 @@ import SquadFilters from "@/components/exploreSquads/SquadFilters";
 import SquadSearchBar from "@/components/exploreSquads/SquadSearchBar";
 import FeaturesSkeleton from "@/components/landingPage/Features/FeaturesSkeleton";
 import { getAllSquads, SquadQueryParams } from "@/lib/api/squad";
+import { Metadata } from "next";
 
 // searchParams Interface 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>; 
 }
+
+export const metadata: Metadata = {
+  title: "Explore Squads - DevSquad",
+  description:
+    "Discover and join development squads that match your skills and interests.",
+};
 
 const ExploreSquads = async ({ searchParams }: PageProps) => {
   const resolvedSearchParams = await searchParams;

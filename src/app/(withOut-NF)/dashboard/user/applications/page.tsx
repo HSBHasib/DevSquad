@@ -4,7 +4,13 @@ import SquadPagination from "@/components/pagination/SquadPagination";
 import { getApplications } from "@/lib/api/applications";
 import { getUserSession } from "@/lib/core/session";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Applications - DevSquad",
+  description:
+    "View and manage your applications to development squads.",
+};
 
 interface PageProps {
   searchParams: Promise<{

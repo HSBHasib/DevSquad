@@ -1,6 +1,13 @@
 import React from "react";
 import AllSquadsTable from "@/components/dashboard/allSquadsTable/AllSquadsTable";
 import { getAllSquads } from "@/lib/api/squad";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "All Squads - DevSquad",
+  description:
+    "View and manage all development squads in the DevSquad platform.",
+};
   
 const AllSquads = async () => {
   const response = await getAllSquads() ;
