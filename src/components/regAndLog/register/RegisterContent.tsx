@@ -129,7 +129,7 @@ const RegisterContent = ({ srcParams }: RegisterContentProps) => {
           >
             {/* Name */}
             <div className="flex flex-col gap-2 items-start w-full">
-              <label className="text-[11px] font-bold text-gray-400 tracking-widest uppercase font-mono">
+              <label className="text-[11px] font-bold text-gray-400 tracking-widest uppercase">
                 Full Name
               </label>
               <input
@@ -162,7 +162,7 @@ const RegisterContent = ({ srcParams }: RegisterContentProps) => {
 
             {/* Email Address */}
             <div className="flex flex-col gap-2 items-start w-full">
-              <label className="text-[11px] font-bold text-gray-400 tracking-widest uppercase font-mono">
+              <label className="text-[11px] font-bold text-gray-400 tracking-widest uppercase">
                 Email Address
               </label>
               <input
@@ -190,7 +190,7 @@ const RegisterContent = ({ srcParams }: RegisterContentProps) => {
 
             {/* Profile Image  */}
             <div className="flex flex-col gap-2 items-start w-full">
-              <label className="text-[11px] font-bold text-gray-400 tracking-widest uppercase font-mono">
+              <label className="text-[11px] font-bold text-gray-400 tracking-widest uppercase">
                 Profile Avatar
               </label>
               <div className="w-full flex items-center gap-4 bg-[#05070E] border border-gray-800 p-3 rounded-xl">
@@ -203,11 +203,11 @@ const RegisterContent = ({ srcParams }: RegisterContentProps) => {
                       className="object-cover"
                     />
                   ) : (
-                    <span className="text-gray-600 text-xs font-mono">IMG</span>
+                    <span className="text-gray-600 text-xs">IMG</span>
                   )}
                 </div>
                 <label className="flex-1 flex flex-col justify-center items-center px-3 py-2 border border-dashed border-gray-700 hover:border-indigo-500/40 rounded-lg cursor-pointer bg-gray-900/10 hover:bg-indigo-600/5 transition-all">
-                  <span className="text-xs text-gray-400 font-mono">
+                  <span className="text-xs text-gray-400">
                     {isCdnUploading
                       ? "Uploading to Cloud..."
                       : "Choose Image File"}
@@ -231,7 +231,7 @@ const RegisterContent = ({ srcParams }: RegisterContentProps) => {
 
             {/* Password */}
             <div className="flex flex-col gap-2 items-start w-full relative">
-              <label className="text-[11px] font-bold text-gray-400 tracking-widest uppercase font-mono">
+              <label className="text-[11px] font-bold text-gray-400 tracking-widest uppercase">
                 Secure Password
               </label>
               <div className="w-full relative">

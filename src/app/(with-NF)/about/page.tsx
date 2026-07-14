@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const AboutPage = () => {
   return (
-    <div className="w-full min-h-screen text-gray-300 font-sans pb-24 overflow-x-hidden">
+    <div className="w-full min-h-screen text-gray-300 pb-24 overflow-x-hidden">
       <AboutBanner />
       <ArchitecturalPillars />
       <EcosystemMatrix />

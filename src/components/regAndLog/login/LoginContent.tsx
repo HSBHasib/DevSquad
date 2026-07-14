@@ -148,7 +148,7 @@ const LoginContent = () => {
             {/* Password */}
             <div className="flex flex-col gap-2 items-start w-full relative">
               <div className="flex justify-between items-center w-full">
-                <label className="font-mono text-[11px] font-bold text-gray-400 tracking-widest uppercase">
+                <label className="text-[11px] font-bold text-gray-400 tracking-widest uppercase">
                   Password
                 </label>
 

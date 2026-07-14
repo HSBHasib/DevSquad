@@ -7,7 +7,7 @@ interface DashboardLayoutProps {
 
 const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
   return (
-    <div className="min-h-screen flex bg-[#070A13] overflow-hidden text-slate-100 font-sans">
+    <div className="min-h-screen flex bg-[#070A13] overflow-hidden text-slate-100">
       
       {/* Dashbaord SideBar */}
       <DashboardSideBar />

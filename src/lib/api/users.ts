@@ -4,6 +4,7 @@ import { serverFetch } from "../core/server"
 export interface UserAPIResponse {
   success: boolean;
   message?: string;
+  totalUsers: number;
   data: UserData[];
 }
 

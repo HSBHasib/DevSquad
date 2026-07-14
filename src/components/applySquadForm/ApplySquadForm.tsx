@@ -9,6 +9,7 @@ import { MdOutlinePerson4 } from "react-icons/md";
 import { createApplication } from "@/lib/action/application";
 import { CloseButton } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface ApplySquadFormClientProps {
   squadId: string;
@@ -45,7 +46,6 @@ const ApplySquadForm = ({
     formState: { errors },
   } = useForm<IFormInput>();
 
-
   //   IS Squad Full
   if (isFull) {
     return (
@@ -68,10 +68,9 @@ const ApplySquadForm = ({
           <motion.button
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.99 }}
-            onClick={() => router.back()}
             className="mt-4 px-6 py-2 bg-indigo-600/90 hover:bg-indigo-700 text-white cursor-pointer text-sm font-semibold rounded-lg transition duration-200"
           >
-            Explore Other Squads
+            <Link href="/explore-squads">Explore Other Squads</Link>
           </motion.button>
         </motion.div>
       </div>
@@ -130,7 +129,10 @@ const ApplySquadForm = ({
             profile.
           </p>
 
-          <CloseButton onClick={() => router.back()} className="absolute right-4 top-4 opacity-40 hover:opacity-70 transition-opacity" />
+          <CloseButton
+            onClick={() => router.back()}
+            className="absolute right-4 top-4 opacity-40 hover:opacity-70 transition-opacity"
+          />
         </div>
 
         {/* Form Structure */}

@@ -14,13 +14,13 @@ const ErrorPage = ({ error, reset }: ErrorProps) => {
   }, [error]);
 
   return (
-    <div className="min-h-screen w-full bg-[#030712] flex flex-col items-center justify-center p-6 relative overflow-hidden font-sans">
+    <div className="min-h-screen w-full bg-[#030712] flex flex-col items-center justify-center p-6 relative overflow-hidden">
       {/* Background Glow Effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-87.5 h-87.5 bg-red-600/5 blur-[80px] rounded-full pointer-events-none" />
 
       <div className="max-w-md w-full text-center space-y-6 z-10">
         {/* Error Sign */}
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-red-950/30 border border-red-900/40 text-red-500 text-3xl font-mono select-none mx-auto mb-2">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-red-950/30 border border-red-900/40 text-red-500 text-3xl select-none mx-auto mb-2">
           ⚠️
         </div>
 

@@ -51,7 +51,7 @@ const CTASection = () => {
           <motion.div variants={itemVariants} className="flex items-center justify-center gap-4 w-full sm:w-auto max-[400px]:flex-col">
             {/* Get Started button */}
             <Link
-              href="/auth/register"
+              href="/auth/login"
               className="w-full sm:w-auto bg-white hover:bg-gray-100 text-[#4834DF] font-semibold text-sm px-6 py-3.5 rounded-xl transition-all shadow-lg active:scale-98 text-center"
             >
               Get Started

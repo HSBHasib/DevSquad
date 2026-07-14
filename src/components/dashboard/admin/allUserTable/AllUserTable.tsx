@@ -41,7 +41,7 @@ const AllUserTable = ({ users }: AllUserTableProps) => {
       {/* Title Section */}
       <div className="flex flex-col gap-1 mb-6 pl-2">
         <h2 className="text-xl font-bold tracking-wide">All users</h2>
-        <p className="text-xs">
+        <p className="text-xs text-gray-400">
           Monitor, evaluate, and manage system users and member accounts.
         </p>
       </div>
