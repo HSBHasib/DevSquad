@@ -17,7 +17,14 @@ interface LoginFormInputs {
   email: string;
   password: string;
 }
-const LoginContent = () => {
+
+interface SrchProps {
+  redirectTo: string | string[] | undefined;
+}
+
+const LoginContent = ({ redirectTo }: SrchProps) => {
+
+  console.log('redirectTo path: ', redirectTo);
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
@@ -73,7 +80,7 @@ const LoginContent = () => {
       if (data) {
         reset();
         toast.success("Login successful!");
-        router.push("/");
+        router.push(redirectTo as string);
       }
     } catch (error) {
       toast.error("Authorization compilation failed.", { id: "auth-status" });
@@ -231,7 +238,7 @@ const LoginContent = () => {
           </div>
 
           {/* Google Sign-In Button */}
-          <GoogleSignIn />
+          <GoogleSignIn redirectTo={redirectTo} />
 
           {/* User and Admin Login Credentials */}
           <DemoCredentials injectCredentials={injectCredentials} />
@@ -241,7 +248,7 @@ const LoginContent = () => {
             <p className="text-xs text-gray-500">
               Don't have an account?{" "}
               <Link
-                href="/auth/register"
+                href={`/auth/register?redirect=${redirectTo}`}
                 className="text-indigo-400 hover:text-indigo-300 font-semibold underline underline-offset-4 transition-colors"
               >
                 Register

@@ -1,5 +1,5 @@
 import { ApplicationData } from "@/utils/applicationInterface";
-import { serverFetch } from "../core/server";
+import { protectedFetch } from "../core/server";
 
 interface ApplicationResponse {
   success: boolean;
@@ -13,7 +13,7 @@ export const getApplications = async (
   page: number,
   limit: number
 ): Promise<ApplicationResponse> => {
-  return serverFetch<ApplicationResponse>(
+  return protectedFetch<ApplicationResponse>(
     `/api/applications?ownerId=${ownerId}&page=${page}&limit=${limit}`
   );
 };

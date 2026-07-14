@@ -2,6 +2,7 @@ import React from "react";
 import { getAllSquads } from "@/lib/api/squad";
 import ApplySquadForm from "@/components/applySquadForm/ApplySquadForm";
 import { getUserSession } from "@/lib/core/session";
+import { redirect } from "next/navigation";
 
 interface SquadDetailsProps {
   params: Promise<{ id: string }>;
@@ -12,6 +13,10 @@ const ApplicationForm = async ({ params }: SquadDetailsProps) => {
 
   // Applicant Data
   const applicant = await getUserSession();
+
+  if (!applicant) {
+    redirect(`/auth/login?redirect=/squad-detail/${id}/apply`);
+  }
 
   const response = await getAllSquads();
   const squads = response?.data || [];

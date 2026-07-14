@@ -4,13 +4,17 @@ import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
-const GoogleSignIn = () => {
+interface SrchProps {
+  redirectTo: string | string[] | undefined;
+}
+
+const GoogleSignIn = ({ redirectTo }: SrchProps) => {
   
   const signIn = async () => {
     try {
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: '/',
+        callbackURL: redirectTo as string,
       });
     } catch (error) {
       toast.error("Google Sign-In failed.");

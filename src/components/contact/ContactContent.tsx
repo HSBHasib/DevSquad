@@ -9,7 +9,7 @@ const ContactContent = async  () => {
   const user = await getUserSession();
 
   if(!user) {
-    redirect('/auth/login');
+    redirect('/auth/login?redirect=/contact');
   }
 
   return (

@@ -1,8 +1,8 @@
-import React from 'react'
-import LoginContent from '@/components/regAndLog/login/LoginContent'
+import React from "react";
+import LoginContent from "@/components/regAndLog/login/LoginContent";
 import type { Metadata } from "next";
-import { getUserSession } from '@/lib/core/session';
-import { redirect } from 'next/navigation';
+import { getUserSession } from "@/lib/core/session";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Login - DevSquad",
@@ -13,23 +13,22 @@ interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-const LoginPage = async ({searchParams}: PageProps) => {
+const LoginPage = async ({ searchParams }: PageProps) => {
   const user = await getUserSession();
+  const srcParams = await searchParams;
+  const redirectTo = srcParams?.redirect || "/";
+
 
   // Redirect to home page if user already login
-  if(user) {
-    redirect("/")
+  if (user) {
+    redirect("/");
   }
-
-  const srcParams = await searchParams;
-  const redirectTo = srcParams.redirect || "/";
 
   return (
     <div>
-      <LoginContent />
+      <LoginContent redirectTo={redirectTo} />
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
-
+export default LoginPage;

@@ -3,12 +3,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { GoSearch, GoTrash } from "react-icons/go";
-import { UserData } from "@/utils/userInterface";
 import { deleteUser } from "@/lib/action/user";
 import { handleDelete } from "@/utils/handleDelete/HandleDelete";
+import { userSessionInterface } from "@/utils/userSessionInterface";
 
 interface AllUserTableProps {
-  users: UserData[];
+  users: userSessionInterface[];
 }
 
 const AllUserTable = ({ users }: AllUserTableProps) => {

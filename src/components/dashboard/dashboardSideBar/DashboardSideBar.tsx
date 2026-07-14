@@ -26,7 +26,7 @@ const DashboardSideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   // User Session
-  const { data: session, isPending } = authClient.useSession();
+  const { data: session } = authClient.useSession();
   const user = session?.user as userSessionInterface | undefined;
   const userRole = user?.role || "user";
 

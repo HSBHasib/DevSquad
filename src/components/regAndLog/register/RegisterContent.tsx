@@ -19,16 +19,19 @@ export interface RegisterFormInputs {
   password: string;
 }
 
-interface RegisterContentProps {
+interface srcProps {
   srcParams: { [key: string]: string | string[] | undefined };
 }
 
-const RegisterContent = ({ srcParams }: RegisterContentProps) => {
+const RegisterContent = ({ srcParams }: srcProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const router = useRouter();
   const [isCdnUploading, setIsCdnUploading] = useState(false);
- 
+  const router = useRouter();
+
+  const redirectTo = srcParams?.redirect || "/auth/login";
+  const redirectFromGoogle = srcParams?.redirect || "/";
+
   const {
     register,
     handleSubmit,
@@ -77,7 +80,7 @@ const RegisterContent = ({ srcParams }: RegisterContentProps) => {
         reset();
         setIsCdnUploading(false);
         toast.success("Account Registered Successfully!");
-        router.push("/auth/login");
+        router.push(redirectTo as string);
       }
     } catch (err: any) {
       toast.error(err.message || "Registration deployment failed.");
@@ -297,14 +300,14 @@ const RegisterContent = ({ srcParams }: RegisterContentProps) => {
           </div>
 
           {/*  Google Sign-In Gatekeeper */}
-          <GoogleSignIn />
+          <GoogleSignIn redirectTo={redirectFromGoogle} />
 
           {/* Footer Navigation Link to Login Page */}
           <div className="w-full mt-6 pt-4 border-t border-gray-800/40 text-center">
             <p className="text-xs text-gray-500">
               Already have an account?{" "}
               <Link
-                href="/auth/login"
+                href={`/auth/login?redirect=${redirectTo}`}
                 className="text-indigo-400 hover:text-indigo-300 font-semibold underline underline-offset-4 transition-colors"
               >
                 Login
@@ -318,4 +321,3 @@ const RegisterContent = ({ srcParams }: RegisterContentProps) => {
 };
 
 export default RegisterContent;
-
