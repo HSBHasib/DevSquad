@@ -123,6 +123,7 @@ const AllUserTable = ({ users }: AllUserTableProps) => {
                       <div className="flex items-center justify-center gap-2">
                         {/* Delete Button */}
                         <button
+                          disabled={user.role === "admin"}
                           onClick={() =>
                             handleDelete({
                               id: user._id!,
@@ -131,7 +132,11 @@ const AllUserTable = ({ users }: AllUserTableProps) => {
                               deleteAction: deleteUser,
                             })
                           }
-                          className="h-8 w-8 inline-flex cursor-pointer items-center justify-center rounded-lg border border-gray-800 text-gray-400 hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/10 transition duration-150 hover:shadow-sm hover:shadow-red-950/50"
+                          className={`h-8 w-8 inline-flex items-center justify-center rounded-lg border transition duration-150 ${
+                            user.role === "admin"
+                              ? "border-gray-800 text-gray-600 cursor-not-allowed opacity-50"
+                              : "border-gray-800 text-gray-400 cursor-pointer hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/10 hover:shadow-sm hover:shadow-red-950/50"
+                          }`}
                         >
                           <GoTrash size={16} />
                         </button>
