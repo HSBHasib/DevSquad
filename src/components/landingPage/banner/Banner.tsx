@@ -21,13 +21,13 @@ const sliderData = [
       "The ultimate platform for developers to find squads, showcase skills, and ship projects that matter. Skip the solo grind and start building with experts.",
   },
   {
-  badgeText: "Build Fast",
-  titlePrefix: "Collaborate with Elite Devs and Ship Your",
-  gradientText: "SaaS Product",
-  titleSuffix: "Fast.",
-  description:
-    "Connect with passionate builders, share clean code, and transform your ideas into production-ready software.",
-},
+    badgeText: "Build Fast",
+    titlePrefix: "Collaborate with Elite Devs and Ship Your",
+    gradientText: "SaaS Product",
+    titleSuffix: "Fast.",
+    description:
+      "Connect with passionate builders, share clean code, and transform your ideas into production-ready software.",
+  },
   {
     badgeText: "Level Up",
     titlePrefix: "Join Structured Study Groups and Master New",
@@ -38,7 +38,7 @@ const sliderData = [
   },
 ];
 
-const Banner: React.FC = () => {
+const Banner = () => {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -59,7 +59,7 @@ const Banner: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-[85vh] w-full flex items-center justify-center overflow-hidden px-6">
+    <div className="relative min-h-[90vh] w-full flex items-center justify-center overflow-hidden px-6">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10 flex items-center justify-center">
         <svg
@@ -86,20 +86,23 @@ const Banner: React.FC = () => {
       </div>
 
       {/* Main Swiper Container */}
-      <div className="max-w-4xl mx-auto text-center w-full">
+      <div className="max-w-full mx-auto text-center w-full">
         <Swiper
           modules={[Autoplay]}
           spaceBetween={50}
           slidesPerView={1}
           loop={true}
           autoplay={{
-            delay: 6000, 
+            delay: 6000,
             disableOnInteraction: false,
           }}
           className="w-full"
         >
           {sliderData.map((slide, index) => (
-            <SwiperSlide key={index} className="w-full flex flex-col items-center justify-center">
+            <SwiperSlide
+              key={index}
+              className="w-full flex flex-col items-center justify-center"
+            >
               <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -119,7 +122,7 @@ const Banner: React.FC = () => {
                 {/* Main Title */}
                 <motion.h1
                   variants={fadeInUpVariants}
-                  className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight leading-[1.15] mb-6"
+                  className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight leading-[1.15] mb-6 max-w-4xl"
                 >
                   {slide.titlePrefix}{" "}
                   <span className="bg-linear-to-r from-indigo-400 via-purple-400 to-indigo-300 bg-clip-text text-transparent">
@@ -161,9 +164,8 @@ const Banner: React.FC = () => {
           ))}
         </Swiper>
       </div>
-    </section>
+    </div>
   );
 };
 
 export default Banner;
-
