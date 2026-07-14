@@ -97,7 +97,7 @@ if (applicantId === ownerId) {
             ⚠️
           </div>
           <h2 className="text-xl font-bold text-amber-400 mb-2">
-            Admin Access Only
+            User Access Only
           </h2>
           <p className="text-sm text-gray-400">
             As an administrator, you cannot apply to join{" "}
