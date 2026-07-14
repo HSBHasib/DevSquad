@@ -38,7 +38,7 @@ const Analytics = async () => {
             Core Engine Metrics
           </span>
         </div>
-        <h1 className="text-2xl font-black text-white tracking-tight">
+        <h1 className="text-2xl font-bold text-white tracking-tight">
           Administrative Analytics
         </h1>
         <p className="text-sm text-gray-400">
