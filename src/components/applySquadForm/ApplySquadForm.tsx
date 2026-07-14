@@ -18,6 +18,7 @@ interface ApplySquadFormClientProps {
   ownerId: string;
   applicantId: string;
   isFull: boolean;
+  role:string;
 }
 
 interface IFormInput {
@@ -34,6 +35,7 @@ const ApplySquadForm = ({
   ownerId,
   applicantId,
   isFull,
+  role
 }: ApplySquadFormClientProps) => {
   const [loading, setLoading] = useState(false);
 
@@ -46,10 +48,44 @@ const ApplySquadForm = ({
     formState: { errors },
   } = useForm<IFormInput>();
 
-  //   IS Squad Full
+
+  // Is role admin
+  if (role === "admin") { 
+  return (
+    <div className="min-h-[80vh] flex items-center justify-center p-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="max-w-md w-full bg-[#0B0F19] border border-amber-500/20 rounded-3xl p-8 text-center shadow-2xl"
+      >
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/10 text-amber-500">
+          ⚠️
+        </div>
+        <h2 className="text-xl font-bold text-amber-400 mb-2">
+          Admin Access Only
+        </h2>
+        <p className="text-sm text-gray-400">
+          As an administrator, you cannot apply to join{" "}
+          <span className="text-indigo-400 font-semibold">"{squadName}"</span>. 
+          Please use a regular member account to submit an application.
+        </p>
+        <motion.button
+          whileHover={{ scale: 1.01 }}
+          whileTap={{ scale: 0.99 }}
+          className="mt-5 px-6 py-2 bg-indigo-600/90 hover:bg-indigo-700 text-white cursor-pointer text-sm font-semibold rounded-lg transition duration-200"
+        >
+          <Link href="/dashboard/admin/analytics">Go to Dashboard</Link>
+        </motion.button>
+      </motion.div>
+    </div>
+  );
+}
+
+  // Is Squad Full
   if (isFull) {
     return (
-      <div className="min-h-[60vh]  flex items-center justify-center p-4">
+      <div className="min-h-[90vh]  flex items-center justify-center p-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

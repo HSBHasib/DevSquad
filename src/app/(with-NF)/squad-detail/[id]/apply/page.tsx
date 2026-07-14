@@ -13,6 +13,7 @@ const ApplicationForm = async ({ params }: SquadDetailsProps) => {
 
   // Applicant Data
   const applicant = await getUserSession();
+  const role = applicant?.role;
 
   if (!applicant) {
     redirect(`/auth/login?redirect=/squad-detail/${id}/apply`);
@@ -40,6 +41,7 @@ const ApplicationForm = async ({ params }: SquadDetailsProps) => {
       ownerId={(squad?.userId as unknown as string) || ""}
       applicantId={applicant?.id || ""}
       isFull={isFull}
+      role={role as string}
     />
   );
 };

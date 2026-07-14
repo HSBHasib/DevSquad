@@ -8,7 +8,7 @@ const loading = () => {
 
         <div className="h-10 w-10 rounded-full border-[3px] border-gray-800" />
 
-        <div className="absolute h-10 w-10 animate-spin rounded-full border-[4px] border-transparent border-t-blue-500 border-r-blue-500/30" />
+        <div className="absolute h-10 w-10 animate-spin rounded-full border-4 border-transparent border-t-blue-500 border-r-blue-500/30" />
       </div>
 
       <span className="text-xs font-medium text-gray-500 tracking-wider animate-pulse">
