@@ -11,7 +11,6 @@ interface ErrorProps {
 
 const ErrorPage = ({ error, reset }: ErrorProps) => {
   useEffect(() => {
-    console.error("Runtime Exception Blocked:", error);
   }, [error]);
 
   return (
@@ -56,7 +55,7 @@ const ErrorPage = ({ error, reset }: ErrorProps) => {
         </div>
       </div>
 
-      <p className="absolute bottom-6 text-center text-[9px] text-red-900/60 tracking-widest uppercase pointer-events-none">
+      <p className="absolute bottom-6 text-center text-[9px] text-red-900 tracking-widest uppercase pointer-events-none">
         DevSquad Shield Log // Runtime Exception
       </p>
     </div>
@@ -64,4 +63,3 @@ const ErrorPage = ({ error, reset }: ErrorProps) => {
 };
 
 export default ErrorPage;
-

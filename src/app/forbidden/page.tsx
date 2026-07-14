@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { HiOutlineShieldExclamation } from "react-icons/hi2";
+import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 
 
 const Forbidden = () => {
@@ -33,7 +34,7 @@ const Forbidden = () => {
             href="/"
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-900 border border-gray-800 text-gray-300 hover:text-white hover:border-gray-700 rounded-xl text-sm font-medium transition-all shadow-xl active:scale-[0.98]"
           >
-            Return to Home
+            <HiOutlineArrowNarrowLeft size={16} /> Return to Home
           </Link>
         </div>
       </div>

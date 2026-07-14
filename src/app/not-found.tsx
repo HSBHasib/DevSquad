@@ -36,7 +36,7 @@ const NotFound = () => {
       </div>
 
       {/* Mini Security Stamp Footer */}
-      <p className="absolute bottom-6 text-center text-[9px] text-gray-600 tracking-widest uppercase pointer-events-none">
+      <p className="absolute bottom-6 text-center text-[9px] text-gray-500 tracking-widest uppercase pointer-events-none">
         DevSquad Routing System // Status 404
       </p>
     </div>
@@ -44,9 +44,4 @@ const NotFound = () => {
 }
 
 export default NotFound;
-
-
-
-
-
 
