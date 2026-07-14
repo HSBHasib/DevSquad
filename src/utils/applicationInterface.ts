@@ -9,5 +9,7 @@ export interface ApplicationData {
   applicantId: string;
   status: string;
   squadName?: string;
+  communicationLink?: string;
   createdAt?: Date;
 }
+

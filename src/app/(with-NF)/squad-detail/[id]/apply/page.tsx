@@ -31,7 +31,8 @@ const ApplicationForm = async ({ params }: SquadDetailsProps) => {
     <ApplySquadForm
       squadId={id}
       squadName={squad?.projectName || "Unknown Squad"}
-      ownerId={squad?.userId as unknown as string || ""}
+      communicationLink={squad?.communicationLink || "Unknown Squad"}
+      ownerId={(squad?.userId as unknown as string) || ""}
       applicantId={applicant?.id || ""}
       isFull={isFull}
     />

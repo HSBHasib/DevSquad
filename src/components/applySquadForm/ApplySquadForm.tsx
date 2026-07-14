@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 interface ApplySquadFormClientProps {
   squadId: string;
   squadName: string;
+  communicationLink: string;
   ownerId: string;
   applicantId: string;
   isFull: boolean;
@@ -28,6 +29,7 @@ interface IFormInput {
 const ApplySquadForm = ({
   squadId,
   squadName,
+  communicationLink,
   ownerId,
   applicantId,
   isFull,
@@ -43,10 +45,11 @@ const ApplySquadForm = ({
     formState: { errors },
   } = useForm<IFormInput>();
 
+
   //   IS Squad Full
   if (isFull) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center p-4">
+      <div className="min-h-[60vh]  flex items-center justify-center p-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -62,6 +65,14 @@ const ApplySquadForm = ({
             <span className="text-indigo-400 font-semibold">"{squadName}"</span>
             .
           </p>
+          <motion.button
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.99 }}
+            onClick={() => router.back()}
+            className="mt-4 px-6 py-2 bg-indigo-600/90 hover:bg-indigo-700 text-white cursor-pointer text-sm font-semibold rounded-lg transition duration-200"
+          >
+            Explore Other Squads
+          </motion.button>
         </motion.div>
       </div>
     );
@@ -76,6 +87,8 @@ const ApplySquadForm = ({
       const finalPayload = {
         ...data,
         squadId,
+        squadName,
+        communicationLink,
         ownerId,
         status: "pending",
         applicantId,
