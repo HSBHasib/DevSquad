@@ -21,4 +21,3 @@ const AllSquads = async () => {
 };
 
 export default AllSquads;
-

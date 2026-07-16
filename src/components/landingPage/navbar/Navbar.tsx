@@ -75,7 +75,7 @@ const Navbar = () => {
         </div>
 
         {/* Navigation Links */}
-        <div className="hidden md:flex items-center gap-1.5">
+        <div className="hidden lg:flex items-center gap-1.5">
           {isPending ? (
             <div className="flex gap-4 px-2 animate-pulse">
               {skeletons.map((_, idx) => (
@@ -95,7 +95,7 @@ const Navbar = () => {
         </div>
 
         {/* Right-side Desktop Buttons */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           {isPending ? (
             // 💀 Desktop right action skeleton placeholder blocks layout
             <div className="flex items-center gap-3 animate-pulse">
@@ -138,7 +138,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex md:hidden items-center">
+        <div className="flex lg:hidden items-center">
           <button
             onClick={() => setIsOpen(true)}
             className="text-gray-400 hover:text-white focus:outline-none p-2"
@@ -159,7 +159,7 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 260 }}
-              className="fixed top-0 right-0 z-50 h-screen w-75 bg-[#0B0F19] backdrop-blur-xl border-l border-gray-800 p-6 flex flex-col justify-between md:hidden shadow-2xl"
+              className="fixed top-0 right-0 z-50 h-screen w-75 bg-[#0B0F19] backdrop-blur-xl border-l border-gray-800 p-6 flex flex-col justify-between lg:hidden shadow-2xl"
             >
               <div>
                 {/* Close Bar */}
